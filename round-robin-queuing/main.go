@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
-	conn "github.com/enbis/rabbit_test/connection"
-	"github.com/enbis/rabbit_test/consumer"
-	models "github.com/enbis/rabbit_test/models"
-	"github.com/enbis/rabbit_test/producer"
+	conn "github.com/enbis/learning-rabbitmq/round-robin-queuing/connection"
+	"github.com/enbis/learning-rabbitmq/round-robin-queuing/consumer"
+	models "github.com/enbis/learning-rabbitmq/round-robin-queuing/models"
+	"github.com/enbis/learning-rabbitmq/round-robin-queuing/producer"
 	"github.com/spf13/viper"
 )
 

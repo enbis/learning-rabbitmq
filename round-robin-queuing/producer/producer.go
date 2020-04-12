@@ -1,7 +1,7 @@
 package producer
 
 import (
-	"github.com/enbis/rabbit_test/connection"
+	"github.com/enbis/learning-rabbitmq/round-robin-queuing/connection"
 	"github.com/streadway/amqp"
 )
 

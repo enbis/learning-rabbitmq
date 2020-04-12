@@ -1,7 +1,7 @@
 package consumer
 
 import (
-	conn "github.com/enbis/rabbit_test/connection"
+	conn "github.com/enbis/learning-rabbitmq/start-messaging/connection"
 	"github.com/streadway/amqp"
 )
 

@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"time"
 
-	conn "github.com/enbis/rabbit_test/connection"
-	"github.com/enbis/rabbit_test/consumer"
-	models "github.com/enbis/rabbit_test/models"
-	"github.com/enbis/rabbit_test/producer"
+	conn "github.com/enbis/learning-rabbitmq/start-messaging/connection"
+	"github.com/enbis/learning-rabbitmq/start-messaging/consumer"
+	models "github.com/enbis/learning-rabbitmq/start-messaging/models"
+	"github.com/enbis/learning-rabbitmq/start-messaging/producer"
 	"github.com/spf13/viper"
 )
 
