@@ -6,7 +6,7 @@
 
 Working with the acknowledge (ack) in order to make sure a message is never lost. An ack is sent back by the Consumer after receiving and processing each message. The ack is used to RabbitMQ to delete the message from the queue.
 If a Consumer dies without sending back the ack, RabbitMQ understand that the message wasn't fully processed and will re-queue it in order to redelive it to another available Consumer.
-To enable manual ack, set false for `auto-ack` argument of the Queue and add proper method `message.Ack(false)` once the task done.
+To enable manual ack, set false for `auto-ack` argument of the Consume property and add proper method `message.Ack(false)` once the task done.
 
 ## How to test
 
