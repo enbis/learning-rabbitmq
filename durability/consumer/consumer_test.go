@@ -33,6 +33,7 @@ func TestConsumeMsg(t *testing.T) {
 				panic(err.Error())
 			}
 			time.Sleep(time.Duration(seconds) * time.Second)
+			msg.Ack(false)
 			fmt.Printf("message received and processed on Consumer: %s \n", string(msg.Body))
 		}
 	}()
