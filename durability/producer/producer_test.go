@@ -20,7 +20,7 @@ func TestPublish(t *testing.T) {
 	}
 
 	fmt.Println("Publish")
-	for i := 0; i < 20; i++ {
+	for i := 0; i < 5; i++ {
 		time.Sleep(500 * time.Millisecond)
 		m := fmt.Sprintf("Message %d #%d", i, randomInt(5, 10))
 		fmt.Printf("%d: %s \n", i, m)
