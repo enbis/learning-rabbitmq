@@ -1,7 +1,7 @@
 package models
 
 type Configurations struct {
-	ConnString string
-	QueueName  string
-	TopicName  string
+	ConnString   string `yaml:"ConnString"`
+	QueueName    string `yaml:"QueueName"`
+	ExchangeName string `yaml:"ExchangeName"`
 }

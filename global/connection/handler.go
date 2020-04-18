@@ -35,7 +35,7 @@ func (broker *Broker) Close() {
 	broker.Channel.Close()
 }
 
-func (broker *Broker) SetExchange(topicname string) error {
+func (broker *Broker) SetExchange(name, exchangeType string) error {
 
 	fmt.Println()
 	//ExchangeDeclare declares an exchange on the server. If the exchange does not already exist, the server will create it.
@@ -45,7 +45,7 @@ func (broker *Broker) SetExchange(topicname string) error {
 	//Exchanges declared as `internal` do not accept accept publishings. Internal exchanges are useful when you wish to implement inter-exchange topologies that should not be exposed to users of the broker.
 	//When noWait is true, declare without waiting for a confirmation from the server.
 
-	err := broker.Channel.ExchangeDeclare(topicname, "topic", true, false, false, false, nil)
+	err := broker.Channel.ExchangeDeclare(name, exchangeType, true, false, false, false, nil)
 	if err != nil {
 		return err
 	}
@@ -65,8 +65,8 @@ func (broker *Broker) SetQueue(queuename string) error {
 
 }
 
-func (broker *Broker) SetBinding(topicname, queuename string) error {
-	err := broker.Channel.QueueBind(queuename, "#", topicname, false, nil)
+func (broker *Broker) SetBinding(exchangename, queuename string) error {
+	err := broker.Channel.QueueBind(queuename, "#", exchangename, false, nil)
 
 	if err != nil {
 		return err
