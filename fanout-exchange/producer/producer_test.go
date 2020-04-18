@@ -21,7 +21,7 @@ func TestLaunchPublisher(t *testing.T) {
 		panic(err.Error())
 	}
 
-	err = broker.SetExchange(configuration.ExchangeName, "fanout")
+	err = broker.SetExchange(configuration.ExchangeName, "fanout", true, false, false, false, nil)
 	if err != nil {
 		panic(err.Error())
 	}

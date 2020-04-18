@@ -20,18 +20,18 @@ func TestLaunchConsumer(t *testing.T) {
 		panic(err.Error())
 	}
 
-	err = broker.SetExchange(configuration.ExchangeName, "fanout")
+	err = broker.SetExchange(configuration.ExchangeName, "fanout", true, false, false, false, nil)
 	if err != nil {
 		panic(err.Error())
 	}
 
 	qname := fmt.Sprintf("%s.%s", configuration.QueueName, utils.RandomStr())
-	err = broker.SetQueue(qname)
+	err = broker.SetQueue(qname, false, false, false, false, nil)
 	if err != nil {
 		panic(err.Error())
 	}
 
-	err = broker.SetBinding(configuration.ExchangeName, qname)
+	err = broker.SetBinding(configuration.ExchangeName, "", qname, false, nil)
 	if err != nil {
 		panic(err.Error())
 	}
