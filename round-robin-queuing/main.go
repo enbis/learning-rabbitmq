@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
 	"strconv"
 	"strings"
 	"time"
 
+	"github.com/enbis/learning-rabbitmq/global/utils"
 	conn "github.com/enbis/learning-rabbitmq/round-robin-queuing/connection"
 	"github.com/enbis/learning-rabbitmq/round-robin-queuing/consumer"
 	models "github.com/enbis/learning-rabbitmq/round-robin-queuing/models"
@@ -64,7 +64,7 @@ func main() {
 	go func() {
 		for i := 0; i < 10; i++ {
 			time.Sleep(500 * time.Millisecond)
-			m := fmt.Sprintf("Message #%d", randomInt(5, 10))
+			m := fmt.Sprintf("Message #%d", utils.RandomInt(5, 10))
 			fmt.Printf("%d: %s \n", i, m)
 			producer.Publish(m, *broker)
 		}
@@ -99,10 +99,4 @@ func Init() {
 func errorHandler(funcdef, err string) {
 	e := fmt.Sprintf("Func %s, error %s", funcdef, err)
 	panic(e)
-}
-
-func randomInt(min, max int) int {
-	tn := time.Now().Unix()
-	rand.Seed(tn)
-	return rand.Intn(max-min) + min
 }

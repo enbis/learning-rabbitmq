@@ -2,11 +2,11 @@ package producer
 
 import (
 	"fmt"
-	"math/rand"
 	"testing"
 	"time"
 
 	"github.com/enbis/learning-rabbitmq/durability/connection"
+	"github.com/enbis/learning-rabbitmq/global/utils"
 )
 
 func TestPublish(t *testing.T) {
@@ -22,14 +22,8 @@ func TestPublish(t *testing.T) {
 	fmt.Println("Publish")
 	for i := 0; i < 5; i++ {
 		time.Sleep(500 * time.Millisecond)
-		m := fmt.Sprintf("Message %d #%d", i, randomInt(5, 10))
+		m := fmt.Sprintf("Message %d #%d", i, utils.RandomInt(5, 10))
 		fmt.Printf("%d: %s \n", i, m)
 		Publish(m, *broker)
 	}
-}
-
-func randomInt(min, max int) int {
-	tn := time.Now().Unix()
-	rand.Seed(tn)
-	return rand.Intn(max-min) + min
 }

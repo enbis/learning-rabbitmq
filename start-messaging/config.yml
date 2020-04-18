@@ -1,3 +1,0 @@
-Configurations:
-    ConnString: "amqp://guest:guest@localhost:5672"
-    QueueName: "startmessaging"

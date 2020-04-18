@@ -2,7 +2,6 @@ package producer
 
 import (
 	"fmt"
-	"math/rand"
 	"testing"
 	"time"
 
@@ -54,10 +53,4 @@ func TestPublishUnfair(t *testing.T) {
 		fmt.Printf("%d: %s \n", i, m)
 		Publish(m, *broker)
 	}
-}
-
-func randomInt(min, max int) int {
-	tn := time.Now().Unix()
-	rand.Seed(tn)
-	return rand.Intn(max-min) + min
 }
