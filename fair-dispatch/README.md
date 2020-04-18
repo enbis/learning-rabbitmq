@@ -5,9 +5,9 @@ To proceed with the comparison, two tests have been created: fair and unfair.
 
 ## unfair solution
 
-* Terminal 0 -> Producer `go test -run TestPublishUnfair`
-* Terminal 1 -> Consumer#0 `go test -run TestConsumeMsgUnfair`
-* Terminal 2 -> Consumer#1 `go test -run TestConsumeMsgUnfair`
+* Terminal 0 -> `make test/producer/unfair` -> Run the Producer
+* Terminal 1 -> `make test/consumer/unfair` -> Run the Consumer#0
+* Terminal 2 -> `make test/consumer/unfair` -> Run the Consumer#1
 
 In the unfair solution the Producer send ten messages on the queue called unfair. Respectively odd with 3 seconds and even with 8 seconds to process the job effort. The two Consumers start porcessing it without the Qos value setted on the broker channel. That's what you can see as output on the terminal of both Consumer. One Consumer is constantly busy, the other has a lot less work to do. 
 
@@ -37,9 +37,9 @@ What happens if we set Qos on the broker channel when the Consumer established t
 
 ## fair solution
 
-* Terminal 0 -> Producer `go test -run TestPublishFair`
-* Terminal 1 -> Consumer#0 `go test -run TestConsumeMsgFair`
-* Terminal 2 -> Consumer#1 `go test -run TestConsumeMsgFair`
+* Terminal 0 -> `make test/producer/fair` -> Run the Producer
+* Terminal 1 -> `make test/consumer/fair` -> Run the Consumer#0
+* Terminal 2 -> `make test/consumer/fair` -> Run the Consumer#1
 
 In the unfair solution the Producer send ten messages on the queue called fair. Respectively odd with 3 seconds and even with 8 seconds to process the job effort, as well as the first solution but using another queue. The two Consumers start porcessing it with the Qos value setted on the broker channel, with the prefetch value to 1. That necessary telling the broker not to give more than one message to a Consumer at a time, don't dispatch a new message to a worker until it has processed the ack of the previous message.
 

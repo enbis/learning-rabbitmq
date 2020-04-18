@@ -13,7 +13,7 @@ func TestPublishFair(t *testing.T) {
 	if err != nil {
 		panic(err.Error())
 	}
-	err = broker.SetQueue("fair")
+	err = broker.SetQueue("fair", true, false, false, false, nil)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -36,7 +36,7 @@ func TestPublishUnfair(t *testing.T) {
 	if err != nil {
 		panic(err.Error())
 	}
-	err = broker.SetQueue("unfair")
+	err = broker.SetQueue("unfair", true, false, false, false, nil)
 	if err != nil {
 		panic(err.Error())
 	}

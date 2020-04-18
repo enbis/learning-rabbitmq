@@ -15,7 +15,7 @@ func TestConsumeMsgUnfair(t *testing.T) {
 	if err != nil {
 		panic(err.Error())
 	}
-	err = broker.SetQueue("unfair")
+	err = broker.SetQueue("unfair", true, false, false, false, nil)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -46,7 +46,7 @@ func TestConsumeMsgFair(t *testing.T) {
 	if err != nil {
 		panic(err.Error())
 	}
-	err = broker.SetQueue("fair")
+	err = broker.SetQueue("fair", true, false, false, false, nil)
 	if err != nil {
 		panic(err.Error())
 	}
