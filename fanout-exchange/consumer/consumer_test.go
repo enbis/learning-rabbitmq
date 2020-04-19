@@ -1,19 +1,24 @@
 package consumer
 
 import (
+	"flag"
 	"fmt"
 	"testing"
 
 	"github.com/enbis/learning-rabbitmq/global/connection"
 	"github.com/enbis/learning-rabbitmq/global/models"
-	"github.com/enbis/learning-rabbitmq/global/utils"
 	"github.com/spf13/viper"
 )
 
 var configuration *models.Configurations
+var qname = flag.String("qname", "room", "queue name")
 
 func TestLaunchConsumer(t *testing.T) {
 	initConf()
+	if *qname == "" {
+		panic("queue name flag not setted")
+	}
+	fmt.Println("Queue connected to ", *qname)
 
 	broker, err := connection.Connect(configuration.ConnString)
 	if err != nil {
@@ -25,18 +30,18 @@ func TestLaunchConsumer(t *testing.T) {
 		panic(err.Error())
 	}
 
-	qname := fmt.Sprintf("%s.%s", configuration.QueueName, utils.RandomStr())
-	err = broker.SetQueue(qname, false, false, false, false, nil)
+	//qname := fmt.Sprintf("%s.%s", configuration.QueueName, utils.RandomStr())
+	err = broker.SetQueue(*qname, false, false, false, false, nil)
 	if err != nil {
 		panic(err.Error())
 	}
 
-	err = broker.SetBinding(configuration.ExchangeName, "", qname, false, nil)
+	err = broker.SetBinding(configuration.ExchangeName, "", *qname, false, nil)
 	if err != nil {
 		panic(err.Error())
 	}
 
-	msgs, err := ConsumeMsg(*broker, configuration.QueueName, "")
+	msgs, err := ConsumeMsg(*broker, "")
 	if err != nil {
 		panic(err.Error())
 	}

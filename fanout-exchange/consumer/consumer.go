@@ -5,7 +5,7 @@ import (
 	"github.com/streadway/amqp"
 )
 
-func ConsumeMsg(broker conn.Broker, queuename string, consumername string) (<-chan amqp.Delivery, error) {
+func ConsumeMsg(broker conn.Broker, consumername string) (<-chan amqp.Delivery, error) {
 	msgs, err := broker.Channel.Consume(broker.Queue.Name, consumername, true, false, false, false, nil)
 	return msgs, err
 }

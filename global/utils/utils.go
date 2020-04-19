@@ -25,3 +25,10 @@ func RandomInt(min, max int) int {
 	rand.Seed(tn)
 	return rand.Intn(max-min) + min
 }
+
+func SwitchBulb(i int) string {
+	if i%2 == 0 {
+		return "On"
+	}
+	return "Off"
+}

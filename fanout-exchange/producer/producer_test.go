@@ -26,9 +26,9 @@ func TestLaunchPublisher(t *testing.T) {
 		panic(err.Error())
 	}
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 5; i++ {
 		time.Sleep(5000 * time.Millisecond)
-		m := fmt.Sprintf("Message %d %s", i, utils.RandomStr())
+		m := fmt.Sprintf("Light bulb %s", utils.SwitchBulb(i))
 		fmt.Printf("%d: %s \n", i, m)
 		Publish(m, *broker, configuration.ExchangeName)
 	}

@@ -8,41 +8,41 @@
 
 ## the solution
 
-* Terminal 0 -> `make test/consumer` -> It runs the Consumer#0. 
-* Terminal 1 -> `make test/consumer` -> It runs the Consumer#1. 
-* Terminal 2 -> `make test/producer` -> It runs the Producer.
+* Terminal 0 -> `make test/consumer/room0` -> It runs the Consumer#0, as room0.
+* Terminal 1 -> `make test/consumer/room1` -> It runs the Consumer#1, as room1.
+* Terminal 2 -> `make test/producer` -> It runs the Producer, that sends messages to switch on / off the light bulb on the rooms.
 
 *Terminal 2 -> The Producer*
 ```
 Connection string  amqp://guest:guest@localhost:5672
 
-0: Message 0 KHMsxaRO 
-1: Message 1 äFÄmHHyo 
-2: Message 2 fnzhNJPh 
-3: Message 3 kclPötäp 
-4: Message 4 xvjxkZub
+0: Light bulb On 
+1: Light bulb Off 
+2: Light bulb On 
+3: Light bulb Off 
+4: Light bulb On
 ```
 
-*Terminal 0 -> The Consumer#0*
-```
-Connection string  amqp://guest:guest@localhost:5672
-
-Waiting messages
-message received: Message 0 KHMsxaRO
-message received: Message 1 äFÄmHHyo
-message received: Message 2 fnzhNJPh
-message received: Message 3 kclPötäp
-message received: Message 4 xvjxkZub
-```
-
-*Terminal 1 -> The Consumer#1*
+*Terminal 0 -> The Consumer#0 as a Room0*
 ```
 Connection string  amqp://guest:guest@localhost:5672
 
 Waiting messages
-message received: Message 0 KHMsxaRO
-message received: Message 1 äFÄmHHyo
-message received: Message 2 fnzhNJPh
-message received: Message 3 kclPötäp
-message received: Message 4 xvjxkZub
+message received: Light bulb On
+message received: Light bulb Off
+message received: Light bulb On
+message received: Light bulb Off
+message received: Light bulb On
+```
+
+*Terminal 1 -> The Consumer#1 as a Room1*
+```
+Connection string  amqp://guest:guest@localhost:5672
+
+Waiting messages
+message received: Light bulb On
+message received: Light bulb Off
+message received: Light bulb On
+message received: Light bulb Off
+message received: Light bulb On
 ```
