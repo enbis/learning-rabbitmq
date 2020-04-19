@@ -5,3 +5,9 @@ type Configurations struct {
 	QueueName    string `yaml:"QueueName"`
 	ExchangeName string `yaml:"ExchangeName"`
 }
+
+var IntToString = map[int]string{
+	0: "all",
+	1: "first",
+	2: "second",
+}
