@@ -11,7 +11,7 @@ import (
 )
 
 var configuration *models.Configurations
-var qname = flag.String("qname", "room", "queue name")
+var qname = flag.String("qname", "", "queue name")
 
 func TestLaunchConsumer(t *testing.T) {
 	initConf()
@@ -30,7 +30,6 @@ func TestLaunchConsumer(t *testing.T) {
 		panic(err.Error())
 	}
 
-	//qname := fmt.Sprintf("%s.%s", configuration.QueueName, utils.RandomStr())
 	err = broker.SetQueue(*qname, false, false, false, false, nil)
 	if err != nil {
 		panic(err.Error())

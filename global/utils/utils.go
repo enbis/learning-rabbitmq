@@ -32,3 +32,10 @@ func SwitchBulb(i int) string {
 	}
 	return "Off"
 }
+
+func SwitchOnFirst(i int) string {
+	if i == 0 {
+		return "On"
+	}
+	return "Off"
+}

@@ -7,21 +7,23 @@ import (
 
 	"github.com/enbis/learning-rabbitmq/global/connection"
 	"github.com/enbis/learning-rabbitmq/global/models"
-	"github.com/enbis/learning-rabbitmq/global/utils"
 	"github.com/spf13/viper"
 )
 
 var configuration *models.Configurations
 var qb = flag.Int("qbinding", -1, "binding selection")
+var qname = flag.String("qname", "", "queue name")
 
 func TestLaunchConsumer(t *testing.T) {
 	initConf()
 
-	fmt.Println("qbinding ", *qb)
-
 	if *qb == -1 {
 		panic("qbinding flag not setted")
 	}
+	if *qname == "" {
+		panic("queue name flag not setted")
+	}
+	fmt.Println("Queue connected to ", *qname)
 
 	broker, err := connection.Connect(configuration.ConnString)
 	if err != nil {
@@ -33,30 +35,29 @@ func TestLaunchConsumer(t *testing.T) {
 		panic(err.Error())
 	}
 
-	qname := fmt.Sprintf("%s.%s", configuration.QueueName, utils.RandomStr())
-	err = broker.SetQueue(qname, false, false, false, false, nil)
+	err = broker.SetQueue(*qname, false, false, false, false, nil)
 	if err != nil {
 		panic(err.Error())
 	}
 
 	if *qb == 0 {
-		fmt.Println("Binding to all and first")
 		for i := 0; i < 2; i++ {
-			err = broker.SetBinding(configuration.ExchangeName, models.IntToString[i], qname, false, nil)
+			err = broker.SetBinding(configuration.ExchangeName, models.IntToString[i], *qname, false, nil)
 			if err != nil {
 				panic(err.Error())
 			}
+			fmt.Println("Binding to ", models.IntToString[i])
 		}
 	} else {
-		fmt.Println("Binding to all and second")
 		for i := 0; i < 3; i++ {
 			if i == 1 {
 				continue
 			}
-			err = broker.SetBinding(configuration.ExchangeName, models.IntToString[i], qname, false, nil)
+			err = broker.SetBinding(configuration.ExchangeName, models.IntToString[i], *qname, false, nil)
 			if err != nil {
 				panic(err.Error())
 			}
+			fmt.Println("Binding to", models.IntToString[i])
 		}
 	}
 

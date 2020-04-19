@@ -28,9 +28,9 @@ func TestLaunchPublisher(t *testing.T) {
 
 	for i := 0; i < 3; i++ {
 		time.Sleep(5000 * time.Millisecond)
-		m := fmt.Sprintf("Message %d %s", i, utils.RandomStr())
+		m := fmt.Sprintf("Light bulb %s", utils.SwitchOnFirst(i))
 		rk := models.IntToString[i]
-		fmt.Printf("%d: value %s to routingKey %s \n", i, m, rk)
+		fmt.Printf("%d: %s to routingKey %s \n", i, m, rk)
 		Publish(m, *broker, configuration.ExchangeName, rk)
 	}
 

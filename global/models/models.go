@@ -7,7 +7,7 @@ type Configurations struct {
 }
 
 var IntToString = map[int]string{
-	0: "all",
-	1: "first",
-	2: "second",
+	0: "all_rooms",
+	1: "first_room",
+	2: "second_room",
 }
