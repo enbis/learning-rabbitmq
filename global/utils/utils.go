@@ -39,3 +39,21 @@ func SwitchOnFirst(i int) string {
 	}
 	return "Off"
 }
+
+func HomeAutomationCommandList(i int) string {
+	commandList := map[int]string{
+		0: "house.room1.light",
+		1: "house.garage.light",
+		2: "house.garage.door",
+		3: "house.backyard.irrigation",
+		4: "house.garage.light.desktopLamp",
+	}
+	return commandList[i]
+}
+
+func HomeAutomationFunctionList(i int) string {
+	if i == 2 {
+		return "Open"
+	}
+	return "On"
+}
